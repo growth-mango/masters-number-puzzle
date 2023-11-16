@@ -15,6 +15,8 @@ public class Step1 {
         System.out.println(radomNumbers);
         int[] inputNumbers = getUserInput();
         System.out.println(Arrays.toString(inputNumbers));
+        swapNumbers(radomNumbers, inputNumbers[0], inputNumbers[1]);
+        System.out.println(radomNumbers);
 
     }
 
@@ -25,7 +27,7 @@ public class Step1 {
 
     public static List<Integer> generateNumbers() {
         List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i <= 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             numbers.add(i);
         }
         Collections.shuffle(numbers);
@@ -53,6 +55,14 @@ public class Step1 {
             }
         }
         return inputNumbers;
+    }
+
+    public static void swapNumbers(List<Integer> numbers, int number1, int number2) {
+        int index1 = numbers.indexOf(number1);
+        int index2 = numbers.indexOf(number2);
+
+        numbers.set(index1, number2); // set(index, 요소);
+        numbers.set(index2, number1);
     }
 
 }
