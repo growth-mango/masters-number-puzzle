@@ -9,15 +9,19 @@ public class Step1 {
 
     public static void main(String[] args) {
         System.out.println("간단 숫자 퍼즐");
-        //임시 테스트
-        turnPrint();
-        List<Integer> radomNumbers = generateNumbers();
-        System.out.println(radomNumbers);
-        int[] inputNumbers = getUserInput();
-        System.out.println(Arrays.toString(inputNumbers));
-        swapNumbers(radomNumbers, inputNumbers[0], inputNumbers[1]);
-        System.out.println(radomNumbers);
+        List<Integer> randomNumbers = generateNumbers();
 
+
+        while (true) {
+            turnPrint(); // Turn + N 출력
+            System.out.println(randomNumbers); // 랜덤한 8개의 숫자 생성
+            int[] inputNumbers = getUserInput(); // 교환할 두 숫자를 입력 받기
+            swapNumbers(randomNumbers, inputNumbers[0], inputNumbers[1]); // 두 숫자 교환하기
+            if (isSorted(randomNumbers)) {
+                System.out.println("축하합니다! " + turn + "턴만에 퍼즐을 완성하셨습니다!");
+                break;
+            }
+        }
     }
 
     public static void turnPrint() {
@@ -66,12 +70,11 @@ public class Step1 {
     }
 
     public static boolean isSorted(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
+        for (int i = 0; i < numbers.size()-1; i++) {
             if (numbers.get(i) > numbers.get(i + 1)) { // 오름차순이 아닐경우  // [1,2,3,4,5,6,7,8]
                 return false;
             }
         }
         return true;
     }
-
 }
