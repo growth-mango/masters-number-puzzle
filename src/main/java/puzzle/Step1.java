@@ -65,4 +65,13 @@ public class Step1 {
         numbers.set(index2, number1);
     }
 
+    public static boolean isSorted(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) > numbers.get(i + 1)) { // 오름차순이 아닐경우  // [1,2,3,4,5,6,7,8]
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
