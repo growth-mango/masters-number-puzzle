@@ -12,6 +12,7 @@ public class Step2 {
         System.out.println(Arrays.deepToString(generateNumbers()));
         int[][] numbers = generateNumbers();
         shuffleGrid(numbers);
+        printGrid(numbers);
 
     }
 
@@ -59,6 +60,30 @@ public class Step2 {
             }
         }
     }
+
+    // 2차원 배열 출력하기
+    public static void printGrid(int[][] grid) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (grid[i][j] == 0) {
+                    System.out.print("[  ]");
+                } else {
+                    System.out.printf("[%2d]", grid[i][j]); // grid[0][0] grid[0][1] grid[0][2] grid[0][3] println ...
+                }
+            }
+            System.out.println();
+        }
+    }
+
+
+    // 사용자에게 숫자 입력받기
+    // 1개의 숫자 입력받기 (하나의 숫자가 아니거나, 숫자가 아니거나, 1-15 넘어가면 예외처리)
+
+
+    // 입력받은 숫자와 공백 교환하기
+
+
+    // 오름차순으로 정렬되었는지 확인하기
 
 
 
