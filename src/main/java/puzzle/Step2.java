@@ -13,6 +13,7 @@ public class Step2 {
         int[][] numbers = generateNumbers();
         shuffleGrid(numbers);
         printGrid(numbers);
+        System.out.println(getNumber());
 
     }
 
@@ -47,7 +48,7 @@ public class Step2 {
     }
 
     // 2차원 배열 섞기
-    private static void shuffleGrid(int[][] grid){
+    private static void shuffleGrid(int[][] grid) {
         Random rand = new Random();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -56,7 +57,7 @@ public class Step2 {
 
                 int temp = grid[i][j];
                 grid[i][j] = grid[i1][j1];
-                grid[i1][j1] = temp ;
+                grid[i1][j1] = temp;
             }
         }
     }
@@ -78,15 +79,29 @@ public class Step2 {
 
     // 사용자에게 숫자 입력받기
     // 1개의 숫자 입력받기 (하나의 숫자가 아니거나, 숫자가 아니거나, 1-15 넘어가면 예외처리)
+    public static int getNumber() {
+        Scanner sc = new Scanner(System.in);
+        int number;
+        while (true) {
+            try {
+                System.out.print("숫자 입력> ");
+                number = sc.nextInt();
+                if (number >= 1 && number <= 15) {
+                    break;
+                }
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            } catch (NumberFormatException e) {
+                System.out.println("잘못된 입력입니다. 숫자만 입력해주세요.");
+            }
+        }
+        return number;
+    }
 
 
     // 입력받은 숫자와 공백 교환하기
 
 
     // 오름차순으로 정렬되었는지 확인하기
-
-
-
 
 
 }

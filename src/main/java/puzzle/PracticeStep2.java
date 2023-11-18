@@ -7,9 +7,13 @@ public class PracticeStep2 {
     private static final String TURN_PREFIX = "Turn ";
     private static int turn = 1;
 
+
     public static void main(String[] args) {
-        System.out.println("재미있는 15 퍼즐!");
-        System.out.println(Arrays.deepToString(generateNumbers()));
+        System.out.println("재미있는 15 퍼즐!\n");
+        turnPrint();
+        int[][] numbers = generateNumbers();
+        shuffleNumbers(numbers);
+        printGrid(numbers);
 
     }
 
@@ -50,6 +54,18 @@ public class PracticeStep2 {
     }
 
     // 4 * 4 형식으로 출력하기
+    public static void printGrid(int[][] numbers) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (numbers[i][j] == 0) {
+                    System.out.print("[  ]");
+                } else {
+                    System.out.printf("[%2d]", numbers[i][j]);
+                }
+            }
+            System.out.println();
+        }
+    }
 
 
 }
