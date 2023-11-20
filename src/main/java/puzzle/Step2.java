@@ -8,14 +8,18 @@ public class Step2 {
 
     public static void main(String[] args) {
         System.out.println("재미있는 15 퍼즐!\n");
-        turnNumber();
-        System.out.println(Arrays.deepToString(generateNumbers()));
         int[][] numbers = generateNumbers();
-        shuffleGrid(numbers);
-        printGrid(numbers);
-        System.out.println(getNumber());
-        System.out.println(swapWithEmptySpace(numbers, getNumber()));
 
+        while (true) {
+            turnNumber(); // Turn 1
+            printGrid(numbers);
+
+            int inputNumber = getNumber();
+            swapWithEmptySpace(numbers, inputNumber);
+            if (isSorted(numbers)) {
+                System.out.println("축하합니다! " + turn + "턴만에 퍼즐을 완성하셨습니다.");
+            }
+        }
     }
 
     // turn의 숫자를 1부터 증가시키기
@@ -121,8 +125,15 @@ public class Step2 {
 
     }
 
-
     // 오름차순으로 정렬되었는지 확인하기
-
-
+    public static boolean isSorted(int[][] grid) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length - 1; j++) {
+                if (grid[i][j] > grid[i][j + 1]) { // 1 , 2, 3, 4 // 첫 번째 숫자가 가장 작아야 함
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
