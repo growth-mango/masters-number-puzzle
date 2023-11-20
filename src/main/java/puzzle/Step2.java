@@ -14,6 +14,7 @@ public class Step2 {
         shuffleGrid(numbers);
         printGrid(numbers);
         System.out.println(getNumber());
+        System.out.println(swapWithEmptySpace(numbers, getNumber()));
 
     }
 
@@ -23,16 +24,6 @@ public class Step2 {
         turn++;
     }
 
-    // 랜덤 숫자 생성하기 // 1부터 15까지 // [] 포함 // 4 * 4 형식 //
-//    public static List<Integer> generateNumbers(){
-//        List<Integer> numbers = new ArrayList<>();
-//        for (int i = 1; i <= 15 ; i++) {
-//            numbers.add(i);
-//        }
-//        Collections.shuffle(numbers);
-//        return numbers;
-//    }
-    // 1부터 15까지 숫자 생성 후 배치
     public static int[][] generateNumbers() {
         int[][] grid = new int[4][4];
         int num = 1;
@@ -97,8 +88,38 @@ public class Step2 {
         return number;
     }
 
-
     // 입력받은 숫자와 공백 교환하기
+    public static boolean swapWithEmptySpace(int[][] grid, int number) {
+        int[] numberPosition = findPosition(grid, number);
+        int[] emptySpacePosition = findPosition(grid, 0);
+
+        // 교환 가능 여부 확인하기
+        if (isAdjacent(numberPosition, emptySpacePosition)) {
+            // 숫자와 빈 칸 교환
+            grid[numberPosition[0]][numberPosition[1]] = 0;
+            grid[emptySpacePosition[0]][emptySpacePosition[1]] = number;
+            return true;
+        }
+        return false;
+    }
+
+    // 숫자의 위치 찾기
+    private static int[] findPosition(int[][] grid, int number) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == number) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{-1, -1};
+    }
+
+    // 두 위치가 상하좌우로 인접해 있는지 확인
+    private static boolean isAdjacent(int[] pos1, int[] pos2) {
+        return Math.abs(pos1[0] - pos2[0]) + Math.abs(pos1[1] - pos2[1]) == 1;
+
+    }
 
 
     // 오름차순으로 정렬되었는지 확인하기
